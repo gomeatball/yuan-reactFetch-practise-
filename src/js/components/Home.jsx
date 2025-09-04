@@ -1,28 +1,40 @@
+import { Button } from "bootstrap";
 import React from "react";
+import { useEffect, useState } from "react";
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+
 
 //create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-            
+const Home =() =>{
+  const [name,setName] = useState("")
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
+ useEffect(() => {
+  const fetchData = async() =>{
+try {
+  const response = await fetch("https://randomuser.me/api");
+  if (!response.ok) {
+    console.log("there is an error");
+    return;
+  }
+  const data = await response.json();
+  console.log(data);
+  
+  
+} catch (error) {
+  throw new Error("something wrong with fetch");
+  
+}  
+  }
+  fetchData();
+}
+ ,[])
+
+ return (
+  <div>
+
+  </div>
+ )
+}
 
 export default Home;
